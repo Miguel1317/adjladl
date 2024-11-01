@@ -12,6 +12,12 @@ import foto1 from '../src/assets/1.png';
 import foto2 from '../src/assets/2.png';
 import foto3 from '../src/assets/3.png';
 import foto4 from '../src/assets/4.png';
+import Ecobotella1 from '../src/assets/ecobotellas1.png';
+import Ecobotella2 from '../src/assets/ecobotellas2.png';
+import Ecobotella3 from '../src/assets/ecobotellas3.png';
+import economia1 from '../src/assets/eco.jpg';
+import economia2 from '../src/assets/eco2.jpg';
+import plasticos from '../src/assets/Plasticos.mp4';
 
 function Carousell() {
   return (
@@ -41,7 +47,29 @@ function Carousell() {
     </div>
   );
 }
-
+function Carousell2({img1, img2, img3}) {
+  return (
+    <div style={{ maxWidth: '600px', margin: 'auto', paddingBottom:'5%'}}>
+      <Carousel fade>
+        <Carousel.Item>
+          <img src={img1} className="d-block w-100" alt="First slide" />
+          <Carousel.Caption>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src={img2} className="d-block w-100" alt="Second slide" />
+          <Carousel.Caption>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item>
+          <img src={img3} className="d-block w-100" alt="Third slide" />
+          <Carousel.Caption>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+    </div>
+  );
+}
 
 function Navbarr() {
   return (
@@ -65,11 +93,11 @@ const BrocheroCounter = ({ brocherosGanados }) => {
     <p className='brocheros'>Brocheros Ganados: {brocherosGanados}</p>
   )
 };
-const Boton=({texto})=>{
+const Boton=({texto,donde,lugar})=>{
   return(
   <div className='patern'>     
     <img  className='patron' src={Patron}></img>
-    <Link to='Movida' href='Movida'><Button className='botones'>{texto}</Button></Link>
+    <Link to={lugar} href={donde}><Button className='botones'>{texto}</Button></Link>
   </div>
   )
 }
@@ -80,19 +108,13 @@ function Home(){
       <BrocheroCounter/>
     </div>
     <h1>Misiones</h1>
-    <h3>MEDIO AMBINETE</h3>
-    <Boton texto={'USAR PRODUCTOS RECICLABLES'}></Boton>
-    <Boton texto={'PLANTAR UN ARBOL'}></Boton>
-    <Boton texto={'COMPOSTAJE EN CASA'}></Boton>
-    <Boton texto={'EVITAR USO DE PLATICOS DE UN SOLO USO'}></Boton>
-    <h3>CONSUMO</h3>
-    <Boton texto={'REDUCIR CONSUMO DE AGUA'}></Boton>
-    <Boton texto={'USAR ENERGIA RENOVABLE'}></Boton>
-    <Boton texto={'COMPAR PRODUCTOS DE COMERCIO JUSTO'}></Boton>
-    <Boton texto={'DONAR OBJETOS QUE YA NO NECESITES'}></Boton>
-    <h3>TRANSPORTE</h3>
+    <h3>TUTORIALES</h3>
+    <Boton texto={'REDUCIR CONSUMO DE AGUA'} lugar="Movida" donde={'Movida'}></Boton>
+    <Boton texto={'ECOBOTELLAS'}lugar="Movida2" donde={'Movida2'}></Boton>
+    <Boton texto={'ECONOMIA CIRCULAR'} lugar="Movida3" donde={'Movida3'}></Boton>
+    <Boton texto={'PLASTICOS DE UN SOLO USO'} lugar="Movida4" donde={'Movida4'}></Boton>
+    <h3>CONSEJOS</h3>
     <Boton texto={'CAMINAR O ANDAR EN BICICLETA'}></Boton>
-    <Boton texto={'USAR TRANSPORTE PUBLICO'}></Boton>
   </div>
   )
 }
@@ -121,15 +143,62 @@ function User(){
     </div>
   )
 };
-function Movida(){
+function Movida() {
+  const click = () => {
+    alert("Misión cumplida, gracias por ahorrar agua!");
+  };
+
+  return (
+    <div className='orden'>
+      <h1>Primera Misión: El Agua</h1>
+      <Carousell />
+      <Button className="boton" variant="dark" onClick={click}>Enviar</Button>
+      <Link to='/' href='Home'><Button className="volver" variant="dark">Volver a las misiones</Button></Link>
+    </div>
+  );
+}
+
+function Movida2() {
+  const click = () => {
+    alert("Misión cumplida, gracias por armar ecobotellas!");
+  };
   return(
     <div className='orden'>
-      <h1>Primera Mision: El Agua</h1>
-      <Carousell></Carousell>
-      <Button  className="boton" variant="dark">Enviar!</Button>
+      <h1>Segunda mision: Ecobotellas</h1>
+      <Carousell2 img1={Ecobotella1} img2={Ecobotella2} img3={Ecobotella3}></Carousell2>
+      <Button  className="boton" variant="dark" onClick={click}>Enviar!</Button>
+      <Link to='/' href='Home'><Button className='volver' variant="dark">Volver a las misiones</Button></Link>
     </div>
   )
-};
+}
+
+function Movida3() {
+  const click = () => {
+    alert("Misión cumplida, gracias por formar parte de la economia circular!");
+  };
+  return(
+    <div className='orden'>
+      <h1>Segunda mision: Ecobotellas</h1>
+      <Carousell2 img1={economia1} img2={economia2} img3={Ecobotella3}></Carousell2>
+      <Button  className="boton" variant="dark" onClick={click}>Enviar!</Button>
+      <Link to='/' href='Home'><Button className='volver' variant="dark">Volver a las misiones</Button></Link>
+    </div>
+  )
+}
+function Movida4() {
+  const click = () => {
+    alert("Misión cumplida, gracias por formar parte de la economia circular!");
+  };
+  return(
+    <div className='orden'>
+      <h1>Segunda mision: Ecobotellas</h1>
+      <video src={plasticos}></video>
+      <Button  className="boton" variant="dark" onClick={click}>Enviar!</Button>
+      <Link to='/' href='Home'><Button className='volver' variant="dark">Volver a las misiones</Button></Link>
+    </div>
+  )
+}
+
 function Sesion(){
   return(
     <div className='orden2'>
@@ -155,6 +224,9 @@ function App() {
         <Route path="/" element={ <Home /> } />
         <Route path='User' element={<User/>}/>
         <Route path='Movida' element={<Movida/>}/>
+        <Route path='Movida2' element={<Movida2/>}/>
+        <Route path='Movida3' element={<Movida3/>}/>
+        <Route path='Movida4' element={<Movida4/>}/>
         <Route path='Sesion' element={<Sesion/>}/>
       </Routes>
     </>
